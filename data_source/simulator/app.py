@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import time
 from fastapi.responses import StreamingResponse
 import json
+import os.path
+
 from insert import *
 from data_faker import generate_transaction
 from get_db_connection import connect_to_source_db
@@ -14,6 +16,11 @@ def generate_data(conn,nb_advisor,nb_customer):
     insert_erp_accounts(conn)
     advisors_ids = []
     customers = {}
+    file_name = "../customer.json"
+    if os.path.exists(file_name):
+        with open(file_name, "r") as f:
+            customers = json.load(f)
+            
     while nb_advisor!=0:
         id = insert_advisor(conn)
         advisors_ids.append(id)
