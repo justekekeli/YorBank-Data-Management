@@ -13,7 +13,7 @@ DB_NAME = os.getenv("PG_NAME")
 DB_USER = os.getenv("PG_USER")
 DB_PASSWORD = os.getenv("PG_PASSWORD")
 
-def connectToSourceDB():
+def connect_to_source_db():
     conn = None
     try:
         conn = psycopg2.connect(
@@ -34,7 +34,8 @@ def close_connection(connection):
         connection.close()
 
 def test_connection():
-   conn= connectToSourceDB()
+   conn= connect_to_source_db()
+   print(type(conn))
    close_connection(conn)
 
 
