@@ -1,0 +1,24 @@
+{
+  "name": "yorbank_db_erp",
+  "workspaceId": "7d94c1f4-d9cf-490b-8151-6d2bca50e7cd",
+  "definitionId": "decd338e-5647-4c0b-adf4-da0e75f5a750",
+  "configuration": {
+    "port": 5432,
+    "host": "host.docker.internal",
+    "schemas": [
+      "erp"
+    ],
+    "database": "yorbank_db",
+    "password": "******",
+    "ssl_mode": {
+      "mode": "disable"
+    },
+    "username": "postgres",
+    "tunnel_method": {
+      "tunnel_method": "NO_TUNNEL"
+    },
+    "replication_method": {
+      "method": "Xmin"
+    }
+  }
+}

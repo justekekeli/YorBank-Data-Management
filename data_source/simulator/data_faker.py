@@ -1,6 +1,6 @@
 
 from faker import Faker
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,timezone
 import random
 import time
 
@@ -95,14 +95,14 @@ def generate_transaction(account_id) -> dict:
         amount = -amount
 
     transaction = {
-        "transaction_id": str(fake.uuid4()),
+        "transaction_id": int(time.time() * 1000),
         "account_id": account_id,
         "amount": amount,
         "balance_after": round(random.uniform(-1000, 10000), 2),
         "transaction_type": txn_type,
         "description": descriptions[txn_type],
         "status": current_status,
-        "occurred_at": time.strftime("%Y-%m-%dT%H:%M:%SZ")
+        "occurred_at": str(datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     }
     return transaction
 

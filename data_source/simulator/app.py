@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import time
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse
 import json
 import os.path
 
@@ -98,10 +98,9 @@ def stream_transactions():
     customers_dict = {}
     with open("../customer.json", "r") as f:
         customers_dict = json.load(f)
-    def event_stream():
-        while True:
-            txn = generate_transaction_and_moves(customers_dict)
-            yield json.dumps(txn) +"\n"
-            time.sleep(1)
-
-    return StreamingResponse(event_stream(), media_type="application/json")
+    events = []
+    for _ in range(5):
+        txn = generate_transaction_and_moves(customers_dict)
+        events.append(txn)
+        time.sleep(0.4)  # spread them out a little (5 * 0.4s = ~2s total)
+    return JSONResponse(content=events)

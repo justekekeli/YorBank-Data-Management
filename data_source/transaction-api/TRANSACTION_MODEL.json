@@ -1,6 +1,6 @@
 [
     {
-        "transaction_id": "String",
+        "transaction_id": "Integer",
         "account_id": "Integer",
         "amount": "Decimal",
         "balance_after": "Decimal",
