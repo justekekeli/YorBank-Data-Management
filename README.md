@@ -47,10 +47,10 @@ COMING SOON
 ]**
 ```
 - Accounts and ERP details
-![banking data][media/yorbank_postgres_db.png]
+![banking data](media/yorbank_postgres_db.png)
 
 🧱 Medallion Architecture
-![banking data][media/yorbank_bigquery_dw.png]
+![banking data](media/yorbank_bigquery_dw.png)
 
 ## ⚙️ Tech Stack
 1. Ingestion
