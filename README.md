@@ -18,9 +18,9 @@ I integrate both **banking transaction data (via API)** and **ERP accounting dat
    - Dashboard for revenue:
      - Commission on account maintenance  
      - Profit on loans  
-     - number of customer
-     - amount of transaction
-     - number of transaction
+     - number of customers
+     - amount of transactions
+     - number of transactions
 
 ---
 
