@@ -1,14 +1,13 @@
 [
     {
         "transaction_id": "Integer",
-        "account_id": "Integer",
+        "sender_account_id": "String",
+        "receiver_account_id": "String",
         "amount": "Decimal",
-        "balance_after": "Decimal",
         "transaction_type": "String",
         "description" : "String" ,
         "status": "String",
         "occurred_at": "YYYY-MM-DDTHH:MM:SSZ"
-    },
-    {}
+    }
 
 ]

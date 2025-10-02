@@ -7,7 +7,7 @@ create table erp.res_partner (
     first_name varchar(50) not null,
     last_name varchar(50) not null,
     email varchar(60),
-    external_id text  -- link to banking.customers.customer_id
+    external_id varchar(40)  -- link to banking.customers.customer_id
 );
 
 -- Chart of Accounts
@@ -22,7 +22,8 @@ create table erp.account (
 create table erp.account_move (
     id varchar(40) primary key,
     name varchar(50),
-    partner_id varchar(40) references erp.res_partner(id),
+    partner_receiver_id varchar(40) references erp.res_partner(id),
+    partner_sender_id varchar(40) references erp.res_partner(id),
     external_txn_id varchar(40),
     date date
 );
