@@ -42,19 +42,13 @@ def insert_customer_and_account(conn,advisor_id,profile_id):
     
     cursor = conn.cursor()
     customer = generate_customer(advisor_id,profile_id)
-    erp_res_partner = generate_res_partner(customer)
+    
     
     cursor.execute("""
         INSERT INTO banking.customers
         (customer_id,advisor_id,profile_id, first_name, last_name, email, created_at)
         VALUES (%s, %s, %s, %s, %s, %s, %s) ON CONFLICT (customer_id) DO NOTHING;
     """, customer)
-
-    cursor.execute("""
-        INSERT INTO erp.res_partner
-        (id,first_name,last_name, email, external_id)
-        VALUES (%s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;
-    """, erp_res_partner)
 
     account = generate_account(customer[0],'normal')
     cursor.execute("""

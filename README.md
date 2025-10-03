@@ -48,10 +48,12 @@ COMING SOON
 ```
 - Accounts details on PostgreSQL
 
-COMING SOON
+![image](media/yorbank_postgres_db.png)
 
 🧱 Medallion Architecture
-COMING SOON
+
+![image](media/yorbank_bigquery_dw.png.png)
+
 
 ## ⚙️ Tech Stack
 1. Ingestion

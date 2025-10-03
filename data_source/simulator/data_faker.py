@@ -106,15 +106,3 @@ def generate_transaction(sender_account_id,receiver_account_id) -> dict:
     }
     return transaction
 
-#############################################################
-#                        ERP Data                           #
-#############################################################
-
-def generate_res_partner(customer):
-    return (
-        customer[0],
-        customer[1],
-        customer[2],
-        fake.email(),
-        customer[0]
-    )
