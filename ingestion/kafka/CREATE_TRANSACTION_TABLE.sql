@@ -1,8 +1,8 @@
 CREATE TABLE `totemic-courage-473402-r9.bronze.yorb_transaction` (
   transaction_id   INT64,
-  account_id STRING,
+  sender_account_id STRING,
+  receiver_account_id STRING,
   amount     FLOAT64,
-  balance_after FLOAT64,
   transaction_type STRING,
   description STRING,
   status STRING,

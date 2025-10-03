@@ -13,7 +13,6 @@ app = FastAPI(title="YorBank Transaction API")
 
 def generate_data(conn,nb_advisor,nb_customer):
     insert_profiles(conn)
-    insert_erp_accounts(conn)
     advisors_ids = []
     customers = {}
     file_name = "../customer.json"
@@ -39,40 +38,10 @@ def generate_transaction_and_moves(customers_dict):
     
     accounts = [v for sublist in customers_dict.values() for v in sublist]
     customers = list(customers_dict.keys())
-    account_choice = random.choice(accounts)
-    customer_choice = random.choice(customers)
-    transaction = generate_transaction(account_choice)
+    sender_account_choice = random.choice(accounts)
+    receiver_account_choice = random.choice(accounts)
+    transaction = generate_transaction(sender_account_choice,receiver_account_choice)
     conn = connect_to_source_db()
-    move_id = insert_account_move(conn,transaction,customer_choice)
-    """
-    yield (1,'4000','Commission Revenue','revenue')
-    yield (2,'4100','Loan Interest Income','revenue')
-    yield (3,'2100','Loan Loss Provisions','expense')
-    yield (4,'1100','Accounts Receivable','asset')
-    yield (5,'1000','Bank Cash','asset')
-
-    """
-    match transaction["transaction_type"]:
-        case "deposit":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "withdrawal":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "transfer_in":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "transfer_out":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "card_payment":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "bill_payment":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "loan_disbursement":
-            insert_account_move_line(conn,move_id,[5,4],customer_choice)
-        case "loan_repayment":
-            insert_account_move_line(conn,move_id,[5,4,2],customer_choice)
-        case "savings_interest":
-            insert_account_move_line(conn,move_id,[3,5],customer_choice)
-        case "maintenance_fee":
-            insert_account_move_line(conn,move_id,[4,1],customer_choice)
 
     conn.close()
     return transaction

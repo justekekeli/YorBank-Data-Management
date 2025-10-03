@@ -1,6 +1,6 @@
 
-import time
-from datetime import datetime, timedelta
+
+from datetime import datetime
 from data_faker import *
 
 
@@ -102,48 +102,4 @@ def insert_loan(conn,customer_id):
     conn.commit()
     cursor.close()
     
-
-def insert_erp_accounts(conn):
-    cursor = conn.cursor()
-    erp_accounts = generate_erp_accounts()
-    for erp_account in erp_accounts:
-        cursor.execute("""
-        INSERT INTO erp.account
-        (id, code, name, type )
-        VALUES (%s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;
-    """, erp_account)
-        print(f"[{datetime.now()}] Created advisor {erp_account[1]}.")
-        
-    conn.commit()
-    cursor.close()
-    
-
-def insert_account_move(conn,transaction,account_id):
-    
-    cursor = conn.cursor()
-    account_move = generate_account_move(transaction,account_id)
-    cursor.execute("""
-        INSERT INTO erp.account_move
-        (id,name,partner_id,external_txn_id,date)
-        VALUES (%s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;
-    """, account_move)
-    conn.commit()
-    cursor.close()
-    
-    return account_move[0]
-
-def insert_account_move_line(conn,move_id,account_ids,partner_id):
-    
-    cursor = conn.cursor()
-    for account_id in account_ids:
-        account_move_line = generate_account_move_line(move_id,account_id,partner_id)
-        cursor.execute("""
-        INSERT INTO erp.account_move_line
-        (id,move_id,account_id,debit,credit,partner_id)
-        VALUES (%s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;
-    """, account_move_line)
-    conn.commit()
-    cursor.close()
-    
-
 

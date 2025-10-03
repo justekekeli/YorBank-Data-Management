@@ -83,7 +83,7 @@ descriptions = {
 }
 status = ["completed","cancelled","initiated"]
 
-def generate_transaction(account_id) -> dict:
+def generate_transaction(sender_account_id,receiver_account_id) -> dict:
     """Generate a random transaction"""
     txn_type = random.choice(transaction_types)
     amount = round(random.uniform(10, 1000), 2)
@@ -96,9 +96,9 @@ def generate_transaction(account_id) -> dict:
 
     transaction = {
         "transaction_id": int(time.time() * 1000),
-        "account_id": account_id,
+        "sender_account_id": sender_account_id,
+        "receiver_account_id": receiver_account_id,
         "amount": amount,
-        "balance_after": round(random.uniform(-1000, 10000), 2),
         "transaction_type": txn_type,
         "description": descriptions[txn_type],
         "status": current_status,
@@ -117,30 +117,4 @@ def generate_res_partner(customer):
         customer[2],
         fake.email(),
         customer[0]
-    )
-
-def generate_erp_accounts():
-    yield (1,'4000','Commission Revenue','revenue')
-    yield (2,'4100','Loan Interest Income','revenue')
-    yield (3,'2100','Loan Loss Provisions','expense')
-    yield (4,'1100','Accounts Receivable','asset')
-    yield (5,'1000','Bank Cash','asset')
-
-def generate_account_move(transaction,customer_id):
-    return (
-        fake.uuid4(),
-        transaction["description"],
-        customer_id,
-        transaction["transaction_id"],
-        transaction["occurred_at"]
-    )
-
-def generate_account_move_line(move_id,account_id,partner_id):
-    return (
-        fake.uuid4(),
-        move_id,
-        account_id,
-        round(random.uniform(0, 1000), 2),
-        round(random.uniform(10, 1000), 2),
-        partner_id
     )

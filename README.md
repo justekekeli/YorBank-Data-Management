@@ -2,7 +2,7 @@
 
 This project simulates a **modern data platform** for **Yorbank**, a FinTech company offering online banking services for private individuals.  
 Customers can have **normal, savings, and investment accounts**, request **loans**, and are supported by **financial advisors**.  
-I integrate both **banking transaction data (via API)** and **ERP accounting data and customers data (via postgreSQL)** into a **BigQuery data warehouse**, and use **dbt** to build **Bronze → Silver → Gold** layers following the **Medallion Architecture**.
+I integrate both **banking transaction data (via API)** and **customers data (via postgreSQL)** into a **BigQuery data warehouse**, and use **dbt** to build **Bronze → Silver → Gold** layers following the **Medallion Architecture**.
 
 ---
 
@@ -46,15 +46,12 @@ COMING SOON
 
 ]**
 ```
-- Accounts and ERP details
+- Accounts details on PostgreSQL
 
-
-![banking data](media/yorbank_postgres_db.png)
+COMING SOON
 
 🧱 Medallion Architecture
-
-
-![banking data](media/yorbank_bigquery_dw.png)
+COMING SOON
 
 ## ⚙️ Tech Stack
 1. Ingestion
