@@ -1,0 +1,11 @@
+version: 1.0
+
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: yorb_transaction
+      - name: raw_banking_accounts
+      - name: raw_banking_customers
+      - name: raw_banking_advisors
+      - name: raw_banking_profiles
