@@ -52,7 +52,7 @@ COMING SOON
 
 🧱 Medallion Architecture
 
-![image](media/yorbank_bigquery_dw.png.png)
+![image](media/yorbank_bigquery_dw.png)
 
 
 ## ⚙️ Tech Stack
