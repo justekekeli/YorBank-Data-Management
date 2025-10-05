@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized = 'incremental',
+    incremental_strategy='merge',
+    unique_key = ['reference_date','account_id']
+) }}
 
 select
     account_id,

@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized = 'incremental',
+    incremental_strategy='merge',
+    unique_key = ['transaction_id']
+) }}
 
 select
     txn.transaction_id as transaction_id,

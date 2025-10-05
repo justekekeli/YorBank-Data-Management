@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized = 'incremental',
+    incremental_strategy='merge',
+    unique_key = ['reference_date','customer_id']
+) }}
 
 with last_three_months_balance as (
     select

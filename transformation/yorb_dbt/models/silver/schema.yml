@@ -7,30 +7,45 @@ models:
       - name: customer_id
         data_type: string
         description: ""
+        tests:
+          - not_null
+          - unique
 
       - name: advisor_first_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: advisor_last_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: advisor_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: profile_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: first_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: last_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: email
         data_type: string
@@ -39,6 +54,8 @@ models:
       - name: created_at
         data_type: datetime
         description: ""
+        tests:
+          - not_null
 
   - name: staging_profiles
     description: ""
@@ -46,26 +63,39 @@ models:
       - name: profile_id
         data_type: string
         description: ""
+        tests:
+          - not_null
+          - unique
 
       - name: profile_type
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: max_withdrawal
         data_type: numeric
         description: ""
+        tests:
+          - not_null
 
       - name: max_loan
         data_type: numeric
         description: ""
+        tests:
+          - not_null
 
       - name: maintenance_fee
         data_type: numeric
         description: ""
+        tests:
+          - not_null
 
       - name: created_at
         data_type: datetime
         description: ""
+        tests:
+          - not_null
 
   - name: staging_eod_balance
     description: ""
@@ -73,10 +103,14 @@ models:
       - name: account_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: reference_date
         data_type: date
         description: ""
+        tests:
+          - not_null
 
       - name: customer_id
         data_type: string
@@ -85,6 +119,8 @@ models:
       - name: balance
         data_type: numeric
         description: ""
+        tests:
+          - not_null
 
   - name: staging_transactions
     description: ""
@@ -92,23 +128,37 @@ models:
       - name: transaction_id
         data_type: int64
         description: ""
+        tests:
+          - not_null
+          - unique
 
       - name: sender_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: receiver_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: amount
         data_type: float64
         description: ""
+        tests:
+          - not_null
 
       - name: transaction_type
         data_type: string
         description: ""
-
+        tests:
+          - accepted_values:
+                values: ["deposit","withdrawal","transfer_in","transfer_out",
+                        "card_payment","bill_payment","loan_disbursement",
+                        "loan_repayment","savings_interest","maintenance_fee"]
+          - not_null
       - name: description
         data_type: string
         description: ""
@@ -116,7 +166,11 @@ models:
       - name: status
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: occurred_at
         data_type: timestamp
         description: ""
+        tests:
+          - not_null

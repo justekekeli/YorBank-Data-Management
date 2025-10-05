@@ -7,18 +7,26 @@ models:
       - name: reference_date
         data_type: date
         description: ""
+        tests:
+          - not_null
 
       - name: profile_type
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: advisor_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: total_number
         data_type: int64
         description: ""
+        tests:
+          - not_null
 
   - name: transaction_mart
     description: ""
@@ -26,26 +34,38 @@ models:
       - name: reference_date
         data_type: date
         description: ""
+        tests:
+          - not_null
 
       - name: transaction_type
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: status
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: revenue
         data_type: float64
         description: ""
+        tests:
+          - not_null
 
       - name: nb_transaction
         data_type: int64
         description: ""
+        tests:
+          - not_null
 
       - name: total_amount
         data_type: float64
         description: ""
+        tests:
+          - not_null
 
   - name: customer_overdraft_mart
     description: ""
@@ -53,30 +73,44 @@ models:
       - name: reference_date
         data_type: date
         description: ""
+        tests:
+          - not_null
 
       - name: id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_first_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_last_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: advisor_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
   - name: customer_withdrawal_reached_mart
     description: ""
@@ -84,10 +118,14 @@ models:
       - name: reference_date
         data_type: date
         description: ""
+        tests:
+          - not_null
 
       - name: customer_id
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_first_name
         data_type: string
@@ -96,19 +134,29 @@ models:
       - name: customer_last_name
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: customer_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: advisor_email
         data_type: string
         description: ""
+        tests:
+          - not_null
 
       - name: max_withdrawal
         data_type: numeric
         description: ""
+        tests:
+          - not_null
 
       - name: profile_type
         data_type: string
         description: ""
+        tests:
+          - not_null

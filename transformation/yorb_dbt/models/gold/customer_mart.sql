@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized = 'incremental',
+    incremental_strategy='merge',
+    unique_key = ['reference_date','advisor_email','profile_type']
+) }}
 
 select
     cast('{{ var("reference_date") }}' as date) as reference_date,
