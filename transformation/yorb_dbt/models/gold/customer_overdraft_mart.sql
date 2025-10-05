@@ -1,8 +1,8 @@
 {{ config(materialized='table') }}
 
-with last_third_month_balance as (
+with last_three_months_balance as (
     select
-        {{ dbt_utils.surrogate_key(['month_value','year_value','customer_id']) }} as id,
+        {{ dbt_utils.generate_surrogate_key(['reference_date','customer_id']) }} as id,
         bal.reference_date,
         bal.customer_id,
         case when bal.balance < 0 then true else false end as is_overdraft 
@@ -22,13 +22,13 @@ select
     cust.last_name as customer_last_name,
     cust.email as customer_email,
     advisor_email
-from last_third_month_balance ls inner join {{ ref('staging_customers') }} as cust 
+from last_three_months_balance ls inner join {{ ref('staging_customers') }} as cust 
 on ls.customer_id = cust.customer_id
 group by ls.reference_date,
     ls.id,
     ls.customer_id,
-    cust.first_name as customer_first_name,
-    cust.last_name as customer_last_name,
-    cust.email as customer_email,
+    cust.first_name,
+    cust.last_name,
+    cust.email,
     advisor_email
-having bool_and(is_overdraft)
+having logical_and(is_overdraft)

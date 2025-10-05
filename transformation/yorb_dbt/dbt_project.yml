@@ -40,7 +40,7 @@ models:
 
 
 vars:
-  reference_date: ""
-  overdraft_first_month: ""
-  overdraft_second_month: ""
-  overdraft_third_month: ""
+  reference_date: "2025-10-05"
+  overdraft_first_month: "2025-07-31"
+  overdraft_second_month: "2025-08-31"
+  overdraft_third_month: "2025-09-30"

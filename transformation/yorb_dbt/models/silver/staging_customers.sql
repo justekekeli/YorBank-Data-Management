@@ -4,7 +4,7 @@ select
     customer_id,
     concat(
         upper(substring(adv.first_name, 1, 1)),
-        lower(substring(adv.first_name, 2, LENGTH(name)))
+        lower(substring(adv.first_name, 2, LENGTH(adv.first_name)))
     ) as advisor_first_name,
     upper(adv.last_name) as advisor_last_name,
     adv.email as advisor_email,

@@ -2,13 +2,13 @@
 
 with sliding_month_total_withdrawal as (
     select 
-        customer_id,
+        sender_id as customer_id,
         sum(amount) as total_withdrawal
     from {{ ref('staging_transactions') }} 
     where occurred_at>= date_sub(cast('{{ var("reference_date") }}' as timestamp), interval 30 day)
           and occurred_at< cast('{{ var("reference_date") }}' as timestamp) 
           and transaction_type="withdrawal"
-    group by customer_id
+    group by sender_id
 )
 select
     cast('{{ var("reference_date") }}' as date) as reference_date,

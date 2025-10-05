@@ -8,9 +8,8 @@ select
               when transaction_type='loan_repayment' then amount 
               else  0 end) as revenue,
     sum(transaction_id) as nb_transaction,
-    sum(amount) as total_amount,
-    count(cust.customer_id) as total_number
-from {{ ref('staging_transactions') }} cust
+    sum(amount) as total_amount
+from {{ ref('staging_transactions') }} 
 where occurred_at>= date_sub(cast('{{ var("reference_date") }}' as timestamp), interval 1 day)
           and occurred_at< cast('{{ var("reference_date") }}' as timestamp) 
 group by cast('{{ var("reference_date") }}' as date), transaction_type,status

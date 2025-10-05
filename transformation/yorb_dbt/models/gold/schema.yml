@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: customer_mart
+    description: ""
+    columns:
+      - name: reference_date
+        data_type: date
+        description: ""
+
+      - name: profile_type
+        data_type: string
+        description: ""
+
+      - name: advisor_email
+        data_type: string
+        description: ""
+
+      - name: total_number
+        data_type: int64
+        description: ""
+
+  - name: transaction_mart
+    description: ""
+    columns:
+      - name: reference_date
+        data_type: date
+        description: ""
+
+      - name: transaction_type
+        data_type: string
+        description: ""
+
+      - name: status
+        data_type: string
+        description: ""
+
+      - name: revenue
+        data_type: float64
+        description: ""
+
+      - name: nb_transaction
+        data_type: int64
+        description: ""
+
+      - name: total_amount
+        data_type: float64
+        description: ""
+
+  - name: customer_overdraft_mart
+    description: ""
+    columns:
+      - name: reference_date
+        data_type: date
+        description: ""
+
+      - name: id
+        data_type: string
+        description: ""
+
+      - name: customer_id
+        data_type: string
+        description: ""
+
+      - name: customer_first_name
+        data_type: string
+        description: ""
+
+      - name: customer_last_name
+        data_type: string
+        description: ""
+
+      - name: customer_email
+        data_type: string
+        description: ""
+
+      - name: advisor_email
+        data_type: string
+        description: ""
+
+  - name: customer_withdrawal_reached_mart
+    description: ""
+    columns:
+      - name: reference_date
+        data_type: date
+        description: ""
+
+      - name: customer_id
+        data_type: string
+        description: ""
+
+      - name: customer_first_name
+        data_type: string
+        description: ""
+
+      - name: customer_last_name
+        data_type: string
+        description: ""
+
+      - name: customer_email
+        data_type: string
+        description: ""
+
+      - name: advisor_email
+        data_type: string
+        description: ""
+
+      - name: max_withdrawal
+        data_type: numeric
+        description: ""
+
+      - name: profile_type
+        data_type: string
+        description: ""
