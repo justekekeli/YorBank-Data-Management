@@ -37,3 +37,10 @@ models:
     gold:
       +schema: gold
       +materialized: table
+
+
+vars:
+  reference_date: ""
+  overdraft_first_month: ""
+  overdraft_second_month: ""
+  overdraft_third_month: ""
