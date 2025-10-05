@@ -15,7 +15,7 @@ def generate_data(conn,nb_advisor,nb_customer):
     insert_profiles(conn)
     advisors_ids = []
     customers = {}
-    file_name = "../customer.json"
+    file_name = "customer.json"
     if os.path.exists(file_name):
         with open(file_name, "r") as f:
             customers = json.load(f)
@@ -31,7 +31,7 @@ def generate_data(conn,nb_advisor,nb_customer):
         if nb_customer % 2 == 0:
             insert_loan(conn,customer_id)
         nb_customer -=1
-    with open("../customer.json", "w") as f:
+    with open("customer.json", "w") as f:
         json.dump(customers, f)
 
 def generate_transaction_and_moves(customers_dict):
@@ -65,7 +65,7 @@ async def seed_data(n_customers:int, n_advisors:int):
 def stream_transactions():
     """Stream transactions endlessly, one per second"""
     customers_dict = {}
-    with open("../customer.json", "r") as f:
+    with open("customer.json", "r") as f:
         customers_dict = json.load(f)
     events = []
     for _ in range(5):

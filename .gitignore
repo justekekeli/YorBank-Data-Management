@@ -207,4 +207,4 @@ marimo/_lsp/
 __marimo__/
 
 #tmp files
-data_source/customer.json
+simulator/customer.json
