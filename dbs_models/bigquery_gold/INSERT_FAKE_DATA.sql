@@ -1,5 +1,5 @@
 -- Fake data generation for transaction_mart
-INSERT INTO `totemic-courage-473402-r9.gold.transaction_mart`
+INSERT INTO `gold.transaction_mart`
 (reference_date, transaction_type, status, revenue, nb_transaction, total_amount)
 VALUES
 ('2025-04-13', 'transfer_out', 'cancelled', 5880.08, 44, 5493.06),
@@ -1815,7 +1815,7 @@ VALUES
 
 
 -- Fake data generation for customer_overdraft_mart
-INSERT INTO `totemic-courage-473402-r9.gold.customer_overdraft_mart`
+INSERT INTO `gold.customer_overdraft_mart`
 (id, reference_date, customer_id, customer_first_name, customer_last_name, customer_email, advisor_email)
 VALUES
 ('a727474c-8643-4af0-8934-1577c8c0b764', '2025-04-13', '6d82d15b', 'Michelle', 'Gordon', 'marissamartinez@example.net', 'suzanneweber@example.org'),
@@ -5441,7 +5441,7 @@ VALUES
 
 
 -- Fake data generation for customer_withdrawal_reached_mart
-INSERT INTO `totemic-courage-473402-r9.gold.customer_withdrawal_reached_mart`
+INSERT INTO `gold.customer_withdrawal_reached_mart`
 (reference_date, customer_email, customer_last_name, advisor_first_name, advisor_last_name, advisor_email, customer_first_name, profile_id, max_withdrawal, customer_id)
 VALUES
 ('2025-04-13', 'walteryoung@example.org', 'Calhoun', 'David', 'Rivas', 'jonesjustin@example.net', 'Mark', 'f7ced65c', 8767.43, '94d040c3'),
@@ -8162,7 +8162,7 @@ VALUES
 
 
 -- Fake data generation for customer_mart
-INSERT INTO `totemic-courage-473402-r9.gold.customer_mart`
+INSERT INTO `gold.customer_mart`
 (reference_date, advisor_email, profile_type, total_number)
 VALUES
 ('2025-04-13', 'ggallagher@example.org', 'vip', 984),

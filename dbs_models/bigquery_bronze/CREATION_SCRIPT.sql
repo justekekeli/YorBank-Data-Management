@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.yorb_transaction` (
+CREATE TABLE IF NOT EXISTS `bronze.yorb_transaction` (
   transaction_id   int64,
   sender_account_id string,
   receiver_account_id string,
@@ -12,9 +12,9 @@ PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
   description = "Transactions streamed from FastAPI via Confluent Kafka"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.yorb_transaction` ADD PRIMARY KEY (transaction_id) NOT ENFORCED;
+ALTER TABLE `bronze.yorb_transaction` ADD PRIMARY KEY (transaction_id) NOT ENFORCED;
 
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_accounts` (
+CREATE TABLE IF NOT EXISTS `bronze.raw_banking_accounts` (
   balance		numeric,
   account_id		string,	
   created_at		datetime,	
@@ -25,9 +25,9 @@ PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
   description = "Yorbank customers'accounts details"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.raw_banking_accounts` ADD PRIMARY KEY (account_id) NOT ENFORCED;
+ALTER TABLE `bronze.raw_banking_accounts` ADD PRIMARY KEY (account_id) NOT ENFORCED;
 
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_advisors` (
+CREATE TABLE IF NOT EXISTS `bronze.raw_banking_advisors` (
   email		string,
   last_name		string,
   advisor_id		string,	
@@ -37,9 +37,9 @@ PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
   description = "Yorbank's advisors details"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.raw_banking_advisors` ADD PRIMARY KEY (advisor_id) NOT ENFORCED;
+ALTER TABLE `bronze.raw_banking_advisors` ADD PRIMARY KEY (advisor_id) NOT ENFORCED;
 
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_customers` (
+CREATE TABLE IF NOT EXISTS `bronze.raw_banking_customers` (
   email		string,
   last_name		string,
   advisor_id		string,
@@ -52,9 +52,9 @@ PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
   description = "Yorbank customers details"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.raw_banking_customers` ADD PRIMARY KEY (customer_id) NOT ENFORCED;
+ALTER TABLE `bronze.raw_banking_customers` ADD PRIMARY KEY (customer_id) NOT ENFORCED;
 
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_loans` (
+CREATE TABLE IF NOT EXISTS `bronze.raw_banking_loans` (
   status		string,
   loan_id		string,	
   end_date		date,	
@@ -68,9 +68,9 @@ PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
   description = "Yorbank customers's loans details"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.raw_banking_loans` ADD PRIMARY KEY (loan_id) NOT ENFORCED;
+ALTER TABLE `bronze.raw_banking_loans` ADD PRIMARY KEY (loan_id) NOT ENFORCED;
 
-CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_profiles` (
+CREATE TABLE IF NOT EXISTS `bronze.raw_banking_profiles` (
   max_loan		numeric,
   created_at		datetime,
   profile_id		string,
@@ -81,4 +81,4 @@ CREATE TABLE IF NOT EXISTS `totemic-courage-473402-r9.bronze.raw_banking_profile
 OPTIONS(
   description = "Yorbank customers's profiles types"
 );
-ALTER TABLE `totemic-courage-473402-r9.bronze.raw_banking_profiles` ADD PRIMARY KEY (profile_id) NOT ENFORCED;
+ALTER TABLE `bronze.raw_banking_profiles` ADD PRIMARY KEY (profile_id) NOT ENFORCED;

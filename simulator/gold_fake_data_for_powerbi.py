@@ -46,7 +46,7 @@ def generate_transaction_mart():
             )
 
     values = ",\n".join(rows)
-    return f"""INSERT INTO `totemic-courage-473402-r9.gold.transaction_mart`
+    return f"""INSERT INTO `gold.transaction_mart`
 (reference_date, transaction_type, status, revenue, nb_transaction, total_amount)
 VALUES
 {values};
@@ -69,7 +69,7 @@ def generate_customer_overdraft_mart():
             )
 
     values = ",\n".join(rows)
-    return f"""INSERT INTO `totemic-courage-473402-r9.gold.customer_overdraft_mart`
+    return f"""INSERT INTO `gold.customer_overdraft_mart`
 (id, reference_date, customer_id, customer_first_name, customer_last_name, customer_email, advisor_email)
 VALUES
 {values};
@@ -95,7 +95,7 @@ def generate_customer_withdrawal_reached_mart():
             )
 
     values = ",\n".join(rows)
-    return f"""INSERT INTO `totemic-courage-473402-r9.gold.customer_withdrawal_reached_mart`
+    return f"""INSERT INTO `gold.customer_withdrawal_reached_mart`
 (reference_date, customer_email, customer_last_name, advisor_first_name, advisor_last_name, advisor_email, customer_first_name, profile_id, max_withdrawal, customer_id)
 VALUES
 {values};
@@ -115,7 +115,7 @@ def generate_customer_mart():
             rows.append(f"('{current_date}', '{adv_email}', '{profile_type}', {total_number})")
 
     values = ",\n".join(rows)
-    return f"""INSERT INTO `totemic-courage-473402-r9.gold.customer_mart`
+    return f"""INSERT INTO `gold.customer_mart`
 (reference_date, advisor_email, profile_type, total_number)
 VALUES
 {values};
