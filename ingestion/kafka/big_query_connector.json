@@ -1,0 +1,25 @@
+{
+  "name": "bigquery-sink-yorb-transaction",
+  "connector.class": "BigQuerySink",
+  "tasks.max": "1",
+
+  "topics": "yorb_transaction",
+
+  "project": "your-gcp-project-id",
+  "datasets": "your_bigquery_dataset_name",
+  "autoCreateTables": "true",
+  "autoUpdateSchemas": "true",
+  "sanitizeTopics": "true",
+
+  "input.data.format": "JSON",
+
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "value.converter.schemas.enable": "false",
+
+  "transforms": "convertTimestamp",
+  "transforms.convertTimestamp.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+  "transforms.convertTimestamp.field": "timestamp",
+  "transforms.convertTimestamp.target.type": "string",
+  "transforms.convertTimestamp.format": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+}

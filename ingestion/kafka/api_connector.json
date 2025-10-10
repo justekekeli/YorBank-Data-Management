@@ -1,0 +1,24 @@
+{
+  "name": "http-source-yorb-transaction",
+  "connector.class": "HttpSource",
+  "tasks.max": "1",
+
+  "kafka.topic": "yorb_transaction",
+
+  "http.api.url": "https://your.api.endpoint/path",
+  "http.api.method": "GET",
+
+  "http.request.authentication.type": "BASIC",
+  "http.request.authentication.user": "YOUR_API_KEY",
+  "http.request.authentication.password": "YOUR_API_SECRET",
+
+  "http.initial.offset": "1000000000",
+  "http.offset.mode": "SIMPLE_INCREMENTING",
+  "poll.interval.ms": "3000",
+
+  "output.data.format": "JSON",
+
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "value.converter.schemas.enable": "false"
+}
