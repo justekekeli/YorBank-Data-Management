@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from datetime import datetime, timedelta
+import calendar
 import time
 from fastapi.responses import JSONResponse
 import json
@@ -11,7 +13,7 @@ from get_db_connection import connect_to_source_db
 app = FastAPI(title="YorBank Transaction API")
 
 
-def generate_data(conn,nb_advisor,nb_customer):
+def generate_data(conn,nb_advisor,nb_customer,date_choice=None):
     insert_profiles(conn)
     advisors_ids = []
     customers = {}
@@ -26,7 +28,7 @@ def generate_data(conn,nb_advisor,nb_customer):
         nb_advisor -=1
     
     while nb_customer!=0:
-        customer_id, accounts = insert_customer_and_account(conn,random.choice(advisors_ids),random.randint(1,3))
+        customer_id, accounts = insert_customer_and_account(conn,random.choice(advisors_ids),random.randint(1,3),date_choice)
         customers[customer_id] = accounts
         if nb_customer % 2 == 0:
             insert_loan(conn,customer_id)
@@ -34,20 +36,43 @@ def generate_data(conn,nb_advisor,nb_customer):
     with open("customer.json", "w") as f:
         json.dump(customers, f)
 
-def generate_transaction_and_moves(customers_dict):
+def create_transaction(customers_dict,date_choice=None):
     
     accounts = [v for sublist in customers_dict.values() for v in sublist]
-    customers = list(customers_dict.keys())
+    #customers = list(customers_dict.keys())
     sender_account_choice = random.choice(accounts)
     receiver_account_choice = random.choice(accounts)
-    transaction = generate_transaction(sender_account_choice,receiver_account_choice)
-    conn = connect_to_source_db()
-
-    conn.close()
+    transaction = generate_transaction(sender_account_choice,receiver_account_choice,date_choice)
+   
     return transaction
 
-@app.post("/seed/")
-async def seed_data(n_customers:int, n_advisors:int):
+def init_dates():
+    today = datetime.today()
+
+    # Get the date 3 months ago safely
+    month = today.month - 3
+    year = today.year
+    if month <= 0:
+        month += 12
+        year -= 1
+
+    # Handle days overflow
+    day = min(today.day, calendar.monthrange(year, month)[1])
+    start_date = datetime(year, month, day)
+
+    # Generate list of daily datetimes
+    date_list = [
+        start_date + timedelta(days=i)
+        for i in range((today - start_date).days + 1)]
+    
+    return date_list
+
+
+    
+
+
+@app.post("/customer_details_daily/")
+def seed_data(n_customers:int, n_advisors:int):
     conn = connect_to_source_db()
     try:
         generate_data(conn,n_advisors,n_customers)
@@ -69,7 +94,7 @@ def stream_transactions():
         customers_dict = json.load(f)
     events = []
     for _ in range(5):
-        txn = generate_transaction_and_moves(customers_dict)
+        txn = create_transaction(customers_dict)
         events.append(txn)
         time.sleep(0.4)  # spread them out a little (5 * 0.4s = ~2s total)
     return JSONResponse(content=events)

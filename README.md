@@ -69,6 +69,18 @@ COMING SOON
    1. Power BI dashboards for business team
    2. CSV/Excel exports for advisors
 
+## 📈💰📊 PowerBI reports
+
+### Business Dashboard
+
+![image](media/yorbank_dashboard.png)
+
+### Advisor Report
+
+![image](media/advisor_report_page_1.png)
+
+![image](media/advisor_report_page_2.png)
+
 ## 𖣂 Folder Strcutures
 ```
 ├── .gitignore

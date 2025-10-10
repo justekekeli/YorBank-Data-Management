@@ -24,7 +24,11 @@ def generate_profiles():
     yield (3,"golden",round(random.uniform(20000, 1000000), 2),round(random.uniform(10000, 10000000), 2),round(random.uniform(35, 50), 2),datetime.now().date())
     
 
-def generate_customer(advisor_id,profile_id):
+def generate_customer(advisor_id,profile_id,date_choice=None):
+    if date_choice:
+        date_value = date_choice
+    else:
+        date_value = datetime.now().date()
     return (
         fake.uuid4(),
         advisor_id,
@@ -32,18 +36,22 @@ def generate_customer(advisor_id,profile_id):
         fake.first_name(),
         fake.last_name(),
         fake.email(),
-        datetime.now().date()
+        date_value.date()
     )
 
 
-def generate_account(customer_id,account_type):
+def generate_account(customer_id,account_type,date_choice=None):
+    if date_choice:
+        date_value = date_choice.date()
+    else:
+        date_value = datetime.now().date()
     return (
         fake.uuid4(),
         customer_id,
         account_type,
         #random.choice(['normal','savings','investment']),
         round(random.uniform(-1000, 10000), 2),
-        datetime.now().date()
+        date_value
     )
 
 def generate_loan(customer_id):
@@ -83,7 +91,7 @@ descriptions = {
 }
 status = ["completed","cancelled","initiated"]
 
-def generate_transaction(sender_account_id,receiver_account_id) -> dict:
+def generate_transaction(sender_account_id,receiver_account_id,date_choice=None) -> dict:
     """Generate a random transaction"""
     txn_type = random.choice(transaction_types)
     amount = round(random.uniform(10, 1000), 2)
@@ -94,6 +102,11 @@ def generate_transaction(sender_account_id,receiver_account_id) -> dict:
                     "loan_repayment", "maintenance_fee"] and current_status !="cancelled":
         amount = -amount
 
+    if date_choice:
+        occured_at = str(date_choice.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    else :
+        occured_at = str(datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+
     transaction = {
         "transaction_id": int(time.time() * 1000),
         "sender_account_id": sender_account_id,
@@ -102,7 +115,7 @@ def generate_transaction(sender_account_id,receiver_account_id) -> dict:
         "transaction_type": txn_type,
         "description": descriptions[txn_type],
         "status": current_status,
-        "occurred_at": str(datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        "occurred_at": occured_at
     }
     return transaction
 

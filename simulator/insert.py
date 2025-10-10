@@ -38,10 +38,10 @@ def insert_profiles(conn):
     cursor.close()
 
 
-def insert_customer_and_account(conn,advisor_id,profile_id):
+def insert_customer_and_account(conn,advisor_id,profile_id,date_choice=None):
     
     cursor = conn.cursor()
-    customer = generate_customer(advisor_id,profile_id)
+    customer = generate_customer(advisor_id,profile_id,date_choice)
     
     
     cursor.execute("""
@@ -50,7 +50,7 @@ def insert_customer_and_account(conn,advisor_id,profile_id):
         VALUES (%s, %s, %s, %s, %s, %s, %s) ON CONFLICT (customer_id) DO NOTHING;
     """, customer)
 
-    account = generate_account(customer[0],'normal')
+    account = generate_account(customer[0],'normal',date_choice)
     cursor.execute("""
         INSERT INTO banking.accounts
         (account_id, customer_id, account_type,balance, created_at)
@@ -60,7 +60,7 @@ def insert_customer_and_account(conn,advisor_id,profile_id):
     accounts_ids.append(account[0])
     additionnal_account = random.randint(0,2)
     if additionnal_account > 1:
-        account2 = generate_account(customer[0],'savings')
+        account2 = generate_account(customer[0],'savings',date_choice)
         cursor.execute("""
         INSERT INTO banking.accounts
         (account_id, customer_id, account_type,balance, created_at)
@@ -68,7 +68,7 @@ def insert_customer_and_account(conn,advisor_id,profile_id):
     """, account2)
         accounts_ids.append(account2[0])
         if additionnal_account==2:
-            account3 = generate_account(customer[0],'investment')
+            account3 = generate_account(customer[0],'investment',date_choice)
             cursor.execute("""
         INSERT INTO banking.accounts
         (account_id, customer_id, account_type,balance, created_at)
