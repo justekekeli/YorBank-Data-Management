@@ -26,7 +26,7 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 
 ## 🏗️ Architecture Overview
 
-COMING SOON
+![image](media/Architecture.png)
 
 ## 📂 Data Sources
 
