@@ -78,6 +78,7 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 | `customer_mart`                    | Daily             | After `staging_customers` tests succeed                                 | `reference_date={{ ds }}`                                                                                   |
 | `transaction_mart`                 | Daily             | After `staging_transactions` tests succeed                              | `reference_date={{ ds }}`                                                                                   |
 
+![image](media/airflow_orchestration.png)
 
 ## 📈💰📊 PowerBI reports
 
