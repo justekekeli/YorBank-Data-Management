@@ -69,6 +69,16 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
    1. Power BI dashboards for business team
    2. CSV/Excel exports for advisors
 
+## Airflow orchestration 
+
+| Gold Model                         | Schedule          | Dependencies                                                            | dbt Variables                                                                                               |
+| ---------------------------------- | ----------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `customer_withdrawal_reached_mart` | Daily             | After both `staging_customers` and `staging_transactions` tests succeed | `reference_date={{ ds }}`                                                                                   |
+| `customer_overdraft_mart`          | Monthly (1st day) | After `staging_customers` tests succeed                                 | `overdraft_first_month`, `overdraft_second_month`, `overdraft_third_month` = last days of previous 3 months |
+| `customer_mart`                    | Daily             | After `staging_customers` tests succeed                                 | `reference_date={{ ds }}`                                                                                   |
+| `transaction_mart`                 | Daily             | After `staging_transactions` tests succeed                              | `reference_date={{ ds }}`                                                                                   |
+
+
 ## 📈💰📊 PowerBI reports
 
 ### Business Dashboard

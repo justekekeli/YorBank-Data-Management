@@ -20,3 +20,5 @@ select
 from {{ source('bronze', 'raw_banking_customers') }} as cust
 left join {{ source('bronze', 'raw_banking_advisors') }} as adv
 on cust.advisor_id = adv.advisor_id
+where cast(cust.created_at as timestamp)>= date_sub(cast('{{ var("reference_date") }}' as timestamp), interval 1 day)
+          and  cast(cust.created_at as timestamp)< cast('{{ var("reference_date") }}' as timestamp) 

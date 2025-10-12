@@ -208,5 +208,3 @@ __marimo__/
 
 #tmp files
 simulator/customer.json
-yorb_dbt/profiles.yml
-airflow/db/gcp-key.json
