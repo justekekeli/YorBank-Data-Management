@@ -95,8 +95,41 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 ## 𖣂 Folder Strcutures
 ```
 ├── .gitignore
-├── requirements.txt
+├── Dockerfile
 ├── README.md
+├── docker-compose.yaml
+├── folder_tree.py
+├── airflow
+│   ├── dags
+│   │   ├── .gitignore
+│   │   ├── __pycache__
+│   │   ├── customer_mart_dag.py
+│   │   ├── customer_overdraft_mart_dag.py
+│   │   ├── customer_withdrawal_reached_mart_dag.py
+│   │   ├── orchestrator.py
+│   │   ├── staging_customers_dag.py
+│   │   ├── staging_eod_balance_dag.py
+│   │   ├── staging_profiles_dag.py
+│   │   ├── staging_transactions_dag.py
+│   │   └── transaction_mart_dag.py
+│   ├── db
+│   ├── logs
+│   │   ├── dag_id=customer_mart_dag
+│   │   ├── dag_id=customer_withdrawal_reached_mart_dag
+│   │   ├── dag_id=dbt_pipeline
+│   │   ├── dag_id=master_orchestrator_dag
+│   │   ├── dag_id=staging_customers_dag
+│   │   ├── dag_id=staging_eod_balance_dag
+│   │   ├── dag_id=staging_transactions_dag
+│   │   ├── dag_id=transaction_mart_dag
+│   │   ├── dag_processor_manager
+│   │   └── scheduler
+│   └── plugins
+├── dataviz
+│   ├── advisor_report.pbit
+│   ├── advisor_report.pbix
+│   ├── business_dashboard.pbit
+│   └── business_dashboard.pbix
 ├── dbs_models
 │   ├── banking_db
 │   │   ├── CREATION_SCRIPT.sql
@@ -104,7 +137,8 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 │   ├── bigquery_bronze
 │   │   └── CREATION_SCRIPT.sql
 │   ├── bigquery_gold
-│   │   └── CREATION_SCRIPT.sql
+│   │   ├── CREATION_SCRIPT.sql
+│   │   └── INSERT_FAKE_DATA.sql
 │   ├── bigquery_silver
 │   │   └── CREATION_SCRIPT.sql
 │   └── transaction-api
@@ -115,62 +149,48 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 │   │   ├── README.md
 │   │   └── abctl.exe
 │   ├── airbyte_yorbank_db_banking_source_connector.json
+│   ├── airbyte_yorbank_db_erp_source_connector copy.json
 │   └── kafka
 │       ├── api_connector.json
 │       └── big_query_connector.json
 ├── media
-│   ├── airbyte_data_ingestion.png
-│   ├── bronze_dataset.png
-│   ├── kafka_pipeline.png
-│   ├── kafka_topic.png
-│   ├── yorbank_bigquery_dw.png
-│   └── yorbank_postgres_db.png
-├── orchestration
+├── requirements.txt
 ├── simulator
 │   ├── app.py
+│   ├── customer.json
 │   ├── data_faker.py
 │   ├── get_db_connection.py
+│   ├── gold_fake_data_for_powerbi.py
 │   └── insert.py
-└── transformation
+└── yorb_dbt
+    ├── .gitignore
+    ├── .user.yml
+    ├── README.md
+    ├── analyses
+    │   └── .gitkeep
+    ├── dbt_packages
+    │   ├── codegen
+    │   └── dbt_utils
+    ├── dbt_project.yml
     ├── logs
     │   └── dbt.log
-    └── yorb_dbt
-        ├── .gitignore
-        ├── README.md
-        ├── analyses
-        │   └── .gitkeep
-        ├── dbt_packages
-        ├── dbt_project.yml
-        ├── logs
-        │   └── dbt.log
-        ├── macros
-        │   ├── .gitkeep
-        │   └── generate_schema_name.sql
-        ├── models
-        │   ├── gold
-        │   │   ├── customer_mart.sql
-        │   │   ├── customer_overdraft_mart.sql
-        │   │   ├── customer_withdrawal_reached_mart.sql
-        │   │   ├── schema.yml
-        │   │   └── transaction_mart.sql
-        │   ├── schema.yml
-        │   └── silver
-        │       ├── schema.yml
-        │       ├── staging_customers.sql
-        │       ├── staging_eod_balance.sql
-        │       ├── staging_profiles.sql
-        │       └── staging_transactions.sql
-        ├── package-lock.yml
-        ├── packages.yml
-        ├── seeds
-        │   └── .gitkeep
-        ├── snapshots
-        │   └── .gitkeep
-        ├── target
-        └── tests
-            └── .gitkeep
+    ├── macros
+    │   ├── .gitkeep
+    │   └── generate_schema_name.sql
+    ├── models
+    │   ├── gold
+    │   ├── schema.yml
+    │   └── silver
+    ├── package-lock.yml
+    ├── packages.yml
+    ├── profiles.yml
+    ├── seeds
+    │   └── .gitkeep
+    ├── snapshots
+    │   └── .gitkeep
+    ├── target
+    └── tests
+        ├── .gitkeep
+        └── transaction_count.sql
 ```
-
-
-
 
