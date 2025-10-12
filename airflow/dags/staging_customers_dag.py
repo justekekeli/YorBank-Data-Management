@@ -26,8 +26,7 @@ with DAG(
         task_id="wait_for_eod_balance",
         external_dag_id="staging_eod_balance_dag",
         external_task_id="run_staging_eod_balance",
-        poke_interval=300,  # check every 5min
-        timeout=3600,  # 1 hour max wait
+        timeout=600,
         mode="poke",
     )
 
@@ -37,7 +36,7 @@ with DAG(
     )
 
     dbt_test = BashOperator(
-        task_id="dbt_test_staging_eod_balance",
+        task_id="dbt_test_staging_customers",
         bash_command=f"cd {DBT_DIR} && dbt test --select silver.staging_eod_balance",
     )
 

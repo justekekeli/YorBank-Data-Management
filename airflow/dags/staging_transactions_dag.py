@@ -27,7 +27,7 @@ with DAG(
     )
     dbt_test = BashOperator(
         task_id="dbt_test_staging_transactions",
-        bash_command=f"cd {DBT_DIR} && dbt test --select silver.staging_transactions --profiles-dir {DBT_DIR}",
+        bash_command=f"cd {DBT_DIR} && dbt test --select silver.staging_transactions",
     )
 
     dbt_run >> dbt_test

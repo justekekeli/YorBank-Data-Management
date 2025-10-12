@@ -36,5 +36,6 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    restart: always
     depends_on:
       - airflow-init
