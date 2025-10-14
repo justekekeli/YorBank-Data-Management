@@ -5,7 +5,7 @@ x-airflow-common:
   environment:
     - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
     - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
-    - AIRFLOW__CORE__FERNET_KEY=LETbAUCT8MvhMiSIdY-WbPO3CimJEztsx_xOP5R-AKw=
+    - AIRFLOW__CORE__FERNET_KEY=$KEY
     - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/gcp-key.json
     - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=False
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
