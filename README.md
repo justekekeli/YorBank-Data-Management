@@ -92,7 +92,7 @@ I integrate both **banking transaction data (via API)** and **customers data (vi
 
 ![image](media/advisor_report_page_2.png)
 
-## 𖣂 Folder Strcutures
+## 𖣂 Folder Structure
 ```
 ├── .gitignore
 ├── Dockerfile

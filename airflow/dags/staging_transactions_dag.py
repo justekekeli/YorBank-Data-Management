@@ -8,15 +8,16 @@ default_args = {
     "owner": "airflow",
     "email": ["data-team@example.com"],
     "email_on_failure": True,
-    "retries": 1,
-    "retry_delay": timedelta(minutes=2),
+    "retries":0,
+    #"retry_delay": timedelta(minutes=2),
 }
 
 with DAG(
     "staging_transactions_dag",
     default_args=default_args,
     description="Run dbt staging_transactions model every 15min",
-    schedule_interval="*/15 * * * *",  # every 15 min
+    #schedule_interval="*/15 * * * *",  # every 15 min
+    schedule_interval="@daily",
     start_date=datetime(2025, 10, 11),
     catchup=False,
 ) as dag:
