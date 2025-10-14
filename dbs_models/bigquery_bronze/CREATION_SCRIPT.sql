@@ -15,7 +15,7 @@ OPTIONS(
 ALTER TABLE `bronze.yorb_transaction` ADD PRIMARY KEY (transaction_id) NOT ENFORCED;
 
 CREATE TABLE IF NOT EXISTS `bronze.raw_banking_accounts` (
-  balance		numeric,
+  balance		float64,
   account_id		string,	
   created_at		datetime,	
   customer_id		string,	
@@ -58,11 +58,11 @@ CREATE TABLE IF NOT EXISTS `bronze.raw_banking_loans` (
   status		string,
   loan_id		string,	
   end_date		date,	
-  principal		numeric,	
+  principal		float64,	
   start_date		date,	
   customer_id		string,	
-  interest_rate		numeric,
-  outstanding_balance		numeric
+  interest_rate		float64,
+  outstanding_balance		float64
   )
 PARTITION BY DATE(_PARTITIONTIME)
 OPTIONS(
@@ -71,12 +71,12 @@ OPTIONS(
 ALTER TABLE `bronze.raw_banking_loans` ADD PRIMARY KEY (loan_id) NOT ENFORCED;
 
 CREATE TABLE IF NOT EXISTS `bronze.raw_banking_profiles` (
-  max_loan		numeric,
+  max_loan		float64,
   created_at		datetime,
   profile_id		string,
   profile_type		string,
-  max_withdrawal		numeric,
-  maintenance_fee		numeric
+  max_withdrawal		float64,
+  maintenance_fee		float64
   )
 OPTIONS(
   description = "Yorbank customers's profiles types"

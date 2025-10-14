@@ -2,9 +2,9 @@ CREATE TABLE IF NOT EXISTS `gold.transaction_mart` (
   reference_date date,
   transaction_type string,
   status string,
-  revenue numeric,
-  nb_transaction numeric,
-  total_amount numeric
+  revenue float64,
+  nb_transaction float64,
+  total_amount float64
 )
 PARTITION BY DATE_TRUNC(reference_date, MONTH)
 OPTIONS(
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `gold.customer_withdrawal_reached_mart` (
   advisor_email		string,
   customer_first_name		string,	
   profile_id		string,	
-  max_withdrawal numeric,
+  max_withdrawal float64,
   customer_id		string
   )
 PARTITION BY DATE_TRUNC(reference_date, MONTH)
